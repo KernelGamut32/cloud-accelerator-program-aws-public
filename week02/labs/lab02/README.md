@@ -1,27 +1,32 @@
 # Lab 02 - https://learn.acloud.guru/handson/e4e6a251-06af-4046-992b-84f0ece1d3fb
 
-**Review/highlight https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html
+Review/highlight https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html
 
 * Locate S3 service and create a new bucket
     - Use `mytestbucket-<random characters>` for bucket name
     - Leave region as is
-    - Note that server-side encryption is now enabled by default
-    - Use `AWS Key Management Service (KMS)` for encryption key type
-    - For "Choose from your AWS KMS keys", choose`aws/s3`
-    - Leave all other defaults
+    - Note that server-side encryption (under "Default encryption") is enabled by default
+    - Select `Server-side encryption with AWS Key Management Service keys` for encryption type
+    - Click `Choose from your AWS KMS keys`, and choose`aws/s3` (see https://repost.aws/knowledge-center/s3-encrypt-specific-folder for information on `aws/s3` default key)
+    - Leave all other defaults and click "Create bucket"
     - Master key stored in KMS - used to encrypt data key (which gets stored in S3 with data)
     - Navigate to KMS and explore (in a new tab)
         * Look for `aws/s3` in `AWS managed keys`
-        * Add file to S3 bucket using bucket policy and refresh KMS (using default encryption for bucket under "server-side encryption settings") * Navigate to object and review "server-side" settings (review KMS master key ARN)
+        * Add file to S3 bucket using bucket policy
+        * Navigate to object and review "server-side" settings (review KMS master key ARN); verify that this ARN represents the `aws/s3` key
     - Create our own master key
         * In KMS, navigate to "customer managed keys" and create new symmetric key
-        * Use "KMS" for key material origin
-        * Add alias - "my_s3_key"; use other defaults
+        * Add alias - "my_s3_key"
+        * Select `cloud_user` and `admin` as "Key administrators" and click "Next"
+        * Select `cloud_user` and `admin` as "Key users" and click "Next"
+        * Leave all other defaults
         * Review key policy
+        * Click "Finish"
     - Add new file to S3 bucket
-        * Upload different file
-        * Addl upload options - server-side encryption - use defaults
-        * After upload, review uploaded document and show that still using "aws/s3"
-        * Edit "server-side encryption settings" for bucket and select "my_s3_key" for "choose from your KMS master keys"
+        * Upload a different file
+        * Under "Properties" and "Server-side encryption", notice that "Do not specify an encryption key" is selected; this will use bucket default
+        * After upload, review uploaded document and show that still using `aws/s3`
+        * Edit "server-side encryption settings" for bucket, select "override", select "Choose from your AWS KMS keys", and select "my_s3_key" for "choose from your KMS master keys"
+        * Click "Save changes"
         * Review new KMS master key ARN under server-side encryption settings for uploaded document
-        * Addl upload options - server-side encryption - use "KMS" and select "my_s3_key"
+        * Verify that the ARN matches `my_s3_key` in KMS

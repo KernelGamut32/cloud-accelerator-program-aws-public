@@ -1,6 +1,6 @@
 # Lab 04 - https://learn.acloud.guru/handson/c084edc8-8e1f-4dfe-9c89-237a229f61d0
 
-**NOTE: Walk through diagram at https://aws.amazon.com/security-hub/**
+NOTE: Walk through diagram at https://aws.amazon.com/security-hub/
 
 * Will be focusing on one region but AWS Security Hub is a multi-region service and can aggregate findings from multiple regions into a single pane of glass
 * Navigate to "Config" (AWS Config) and setup "one click setup" to record all resources
