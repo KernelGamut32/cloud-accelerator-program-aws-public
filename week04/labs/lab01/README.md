@@ -24,7 +24,7 @@
 * Open `cdk-labstart/lib/cdk-labstart-stack.ts`, uncomment the line that creates an SQS queue, and uncomment the `import` statement; **make sure you save your changes**
 * Run `cdk synth` to generate the CloudFormation template
 * You can review the template by opening the generated files in the "cdk.out" folder
-* Navigate to SQS in another tab and verify that the queue was created
+* Run `cdk deploy` and navigate to SQS in another tab and verify that the queue was created
 * Return to `cdk-labstart/lib/cdk-labstart-stack.ts` and change `cdk.Duration.seconds(300)` to `cdk.Duration.seconds(600)`; **make sure you save your changes**
 * Run `cdk diff` (which automatically runs `cdk synth` behind-the-scenes) to see the changes that will be made to the stack (differences between what's in the template and what's in the stack)
 * You can observe the changes being processed in the CloudFormation console
