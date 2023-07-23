@@ -33,3 +33,5 @@ NOTE: Walk through diagram at https://aws.amazon.com/security-hub/
     - Note that this is more of a reactive approach
     - To be more proactive, we can create a "hardened" CloudFormation template that automatically includes all security best practices as part of its definition
     - Toggle block public access for the S3 bucket and, after about 5 minutes, notice that the finding is now resolved
+    - Use `Severity (label)` of `CRITICAL` and `Severity (label)` of `HIGH` to initially filter findings
+    - After resolving issues, clear filter and use `Compliance status` of `PASSED` to see resolved issues (it may take a few minutes for the resolved issues to show up)

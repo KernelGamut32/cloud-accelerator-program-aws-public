@@ -1,6 +1,6 @@
 # Lab 02 - https://learn.acloud.guru/handson/e4e6a251-06af-4046-992b-84f0ece1d3fb
 
-Review/highlight https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html
+Review/highlight https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncryption.html and https://www.encryptionconsulting.com/amazon-s3-simple-storage-service-encryption-at-a-glance#:~:text=CMK%2C%20using%20the%20encryption%20algorithm%20%28AES-256%29%2C%20creates%20two,encrypted%20data%20key%20is%20then%20stored%20in%20S3. for additional information. 
 
 * Locate S3 service and create a new bucket
     - Use `mytestbucket-<random characters>` for bucket name
@@ -11,7 +11,7 @@ Review/highlight https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingEncr
     - Leave all other defaults and click "Create bucket"
     - Master key stored in KMS - used to encrypt data key (which gets stored in S3 with data)
     - Navigate to KMS and explore (in a new tab)
-        * Look for `aws/s3` in `AWS managed keys`
+        * Look for `aws/s3` in `AWS managed keys` (see https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-bucket-key.html for more information on `aws/s3` default key)
         * Add file to S3 bucket using bucket policy
         * Navigate to object and review "server-side" settings (review KMS master key ARN); verify that this ARN represents the `aws/s3` key
     - Create our own master key
