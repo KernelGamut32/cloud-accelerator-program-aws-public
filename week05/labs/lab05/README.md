@@ -2,6 +2,6 @@
 
 **Follow along with the Guide tab in the lab**
 
-* Make sure you use "Node.js 16.x" for the runtime
+* Instead of using the Lambda (to send the email) and SES to manage the mail delivery, use a subscription on the SNS topic instead (to avoid SES limits in the ACG lab environment)
 * While waiting for the emails to arrive, review https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html for information on the CloudTrail service
-* Review properties of the S3 bucket - you can see the EventBridge event added to the bucket's properties
+* Review properties of the S3 bucket - you can see the event added to the bucket's properties
