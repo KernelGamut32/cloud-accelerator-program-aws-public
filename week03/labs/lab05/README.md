@@ -1,4 +1,4 @@
-# GitLab Demo with AWS - https://aws.amazon.com/blogs/apn/using-gitlab-ci-cd-pipeline-to-deploy-aws-sam-applications/
+# Lab 05 - https://aws.amazon.com/blogs/apn/using-gitlab-ci-cd-pipeline-to-deploy-aws-sam-applications/
 
 * Updated approach does not require creation of an S3 bucket
 * Create a GitLab project to house a new SAM application
