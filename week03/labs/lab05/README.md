@@ -1,5 +1,7 @@
 # Lab 05 - https://aws.amazon.com/blogs/apn/using-gitlab-ci-cd-pipeline-to-deploy-aws-sam-applications/
 
+**See: https://docs.gitlab.com/ee/ci/yaml/gitlab_ci_yaml.html and https://docs.gitlab.com/ee/ci/yaml/index.html for additional information on the syntax used in the `.gitlab-ci.yml` file**
+
 * Updated approach does not require creation of an S3 bucket
 * Create a GitLab project to house a new SAM application
     * Create a new project in GitLab (I used public) but **do not initialize with a README**
