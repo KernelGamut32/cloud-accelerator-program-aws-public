@@ -43,4 +43,6 @@ production:
     * Push the updated `.gitlab-ci.yml` file to the repository and observe build progress
     * Confirm successful build and test the deployed application through the API gateway URL
     * Make a small change, check in, and confirm automatic deployment
-    
+
+**See https://docs.gitlab.com/ee/tutorials/create_register_first_runner/ for an example of how to create and use a GitLab runner**
+ 
