@@ -5,10 +5,12 @@
 * Updated approach does not require creation of an S3 bucket
 * Create a GitLab project to house a new SAM application
     * Create a new project in GitLab (I used public) but **do not initialize with a README**
-* Integrate the project with GitLab
+    * Use link in GitLab for info on running `ssh-keygen` to generate new SSH key
+* Integrate the project with GitLab (can be run in Cloud9 in AWS sandbox)
     * Execute the following: `sam init -r python3.8 -n <repository name> --app-template "hello-world"`
     * You do not need to enable XRay and you do not want to enable app insights (if you're running in an ACG sandbox)
     * Navigate to the newly-created folder in a terminal
+    * **NOTE: If running in Cloud9, you can use link in GitLab for info on running and storing a new SSH key using `ssh-keygen`; add the public key to GitLab**
     * Execute `git init --initial-branch=main`
     * Execute `git remote add origin <remote repository URL>`
     * Execute `git add .`
@@ -39,10 +41,9 @@ production:
 ```
 
 * Integrate and verify the build
-    * Under "Settings" | "CI/CD" | "Variables", set the "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY" variables to the values for the `cloud_user` account (or whatever AWS account you are using)
+    * For the project, under "Settings" | "CI/CD" | "Variables", set the "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY" variables to the values for the `cloud_user` account (or whatever AWS account you are using)
     * Push the updated `.gitlab-ci.yml` file to the repository and observe build progress
     * Confirm successful build and test the deployed application through the API gateway URL
     * Make a small change, check in, and confirm automatic deployment
 
 **See https://docs.gitlab.com/ee/tutorials/create_register_first_runner/ for an example of how to create and use a GitLab runner**
- 

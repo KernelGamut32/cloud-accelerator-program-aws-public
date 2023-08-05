@@ -23,8 +23,10 @@ async function putItem(params) {
 //logs error on catch
 exports.handler = async (event: APIGatewayProxyEvent) => {
   try {
-    const ID = event.id;
-    const NAME = event.name;
+    const item = JSON.parse(event['body'])
+
+    const ID = item.id;
+    const NAME = item.name;
 
     //define table and item in params
     const params = {
@@ -35,7 +37,13 @@ exports.handler = async (event: APIGatewayProxyEvent) => {
       },
     };
     const data = await putItem(params);
-    return { body: JSON.stringify(data) };
+    const result = {
+        data: data,
+        event: event,
+        params: params,
+        item: item
+    };
+    return { body: JSON.stringify(result) };
   } catch (err) {
     return { error: err };
   }

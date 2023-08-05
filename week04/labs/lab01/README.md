@@ -27,7 +27,7 @@
 * Run `cdk deploy` and navigate to SQS in another tab and verify that the queue was created
 * Return to `cdk-labstart/lib/cdk-labstart-stack.ts` and change `cdk.Duration.seconds(300)` to `cdk.Duration.seconds(600)`; **make sure you save your changes**
 * Run `cdk diff` (which automatically runs `cdk synth` behind-the-scenes) to see the changes that will be made to the stack (differences between what's in the template and what's in the stack)
-* You can observe the changes being processed in the CloudFormation console
+* Run `cdk deploy` to update the deployment - you can observe the changes being processed in the CloudFormation console
 * Review the SQS queue in the SQS console and note that the "Visibility timeout" has been updated to 10 minutes
 * Open `cdk-labstart/test/cdk-labstart.test.ts` and uncomment the test case (and associated `import` statements); **make sure you save your changes**
 * Run `npm test` to execute the test case - because of the most recent property change, the test will fail
