@@ -1,4 +1,4 @@
-# SAM Demo - https://github.com/KernelGamut32/Mastering-AWS-CloudFormation
+# SAM Demo
 
 **Need to install SAM - https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html or run in Cloud9 environment in sandbox**
 
