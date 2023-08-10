@@ -76,12 +76,13 @@ Outputs:
         Export:
             Name: PiggybankApi
 ```
+* Before running `quarkus build --no-tests` and `sam deploy -g`, make sure you change the table name value in the lambda code (from "finance" to "entry")
 ```
 export API_URL=$(aws cloudformation describe-stacks --query 'Stacks[0].Outputs[?OutputKey==`PiggybankApi`].OutputValue' --output text)
 echo $API_URL
 ```
 ```
-curl -X POST ${API_URL}/sam-app-Piggybank-QRWUGHdazTWt/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Food", "description": "Shrimp", "category": "Seafood", "amount": "-20", "balance": "0", "date": "2023-02-01+12:00"}'
+curl -X POST ${API_URL}/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Food", "description": "Shrimp", "category": "Seafood", "amount": "-20", "balance": "0", "date": "2023-02-01+12:00"}'
 curl -X POST ${API_URL}/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Car", "description": "Flat tires", "category": "Automotive", "amount": "-200", "balance": "0", "date": "2023-03-01+12:00"}'
 curl -X POST ${API_URL}/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Payslip", "description": "Income", "category": "Get Paide", "amount": "2000", "balance": "0", "date": "2023-04-01+12:00"}'
 curl -X POST ${API_URL}/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Utilities", "description": "Gas", "category": "Necessary Evils", "amount": "-400", "balance": "0", "date": "2023-05-01+12:00"}'
