@@ -31,6 +31,8 @@ Resources:
                     ServerSideEncryptionByDefault: 
                         SSEAlgorithm: "AES256"
                     BucketKeyEnabled: true
+            # VersioningConfiguration: 
+            #     Status: "Enabled"
             OwnershipControls: 
                 Rules: 
                   - 
