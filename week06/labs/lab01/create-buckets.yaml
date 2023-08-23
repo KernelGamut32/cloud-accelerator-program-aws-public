@@ -3,10 +3,9 @@ Metadata:
     Generator: "former2"
 Description: ""
 Resources:
-    S3Bucket:
+    acgTestLabPrivate:
         Type: "AWS::S3::Bucket"
         Properties:
-            BucketName: "acg-testlab-private"
             BucketEncryption: 
                 ServerSideEncryptionConfiguration: 
                   - 
@@ -23,10 +22,9 @@ Resources:
                 IgnorePublicAcls: true
                 RestrictPublicBuckets: true
 
-    S3Bucket2:
+    acgTestLabPublic:
         Type: "AWS::S3::Bucket"
         Properties:
-            BucketName: "acg-testlab-public"
             BucketEncryption: 
                 ServerSideEncryptionConfiguration: 
                   - 
