@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Metadata:
+    Generator: "former2"
+Description: ""
+Resources:
+    LambdaFunction:
+        Type: "AWS::Lambda::Function"
+        Properties:
+            Description: ""
+            Environment: 
+                Variables: 
+                    DB_PASS: "pl4nt5!"
+                    DB_USER: "plantshop"
+                    DB_HOST: !Sub "database-1-instance-1.cqkudy00onyy.${AWS::Region}.rds.amazonaws.com"
+            FunctionName: "PlantShopAPI"
+            Handler: "index.handler"
+            Architectures: 
+              - "x86_64"
+            Code: 
+                S3Bucket: "prod-04-2014-tasks"
+                S3Key: !Sub "/snapshots/${AWS::AccountId}/PlantShopAPI-a1f96774-37df-4deb-a3db-6cbbe328b660"
+                S3ObjectVersion: "GR5X6i04qqVtKSB5FKNqSEpX7ysY6XTF"
+            MemorySize: 128
+            Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/service-role/PlantShopAPI-role-atj2dtq2"
+            Runtime: "nodejs16.x"
+            Timeout: 3
+            TracingConfig: 
+                Mode: "PassThrough"
+            VpcConfig: 
+                SubnetIds: 
+                  - "subnet-036be0e581d6538ff"
+                  - "subnet-0aaa0ba0c14835a7f"
+                SecurityGroupIds: 
+                  - "sg-04dce55d9dcebcca5"
+            EphemeralStorage: 
+                Size: 512
