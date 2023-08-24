@@ -16,6 +16,9 @@ Parameters:
     DatabaseEndpoint:
         Type: String
         Description: "Database endpoint to connect to"
+    SourceCodeBucket:
+        Type: String
+        Description: "S3 bucket to store source code in"
 
 Resources:
     LambdaRole:
@@ -56,7 +59,7 @@ Resources:
             Architectures: 
               - "x86_64"
             Code: 
-                S3Bucket: "<bucket-name>"
+                S3Bucket: !Ref SourceCodeBucket
                 S3Key: "lambda.zip"
             MemorySize: 128
             Role: !GetAtt LambdaRole.Arn

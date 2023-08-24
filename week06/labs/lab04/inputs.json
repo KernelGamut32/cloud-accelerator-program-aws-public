@@ -14,5 +14,9 @@
     {
         "ParameterKey": "DatabaseEndpoint",
         "ParameterValue": "<database endpoint>"
+    },
+    {
+        "ParameterKey": "SourceCodeBucket",
+        "ParameterValue": "<source code bucket>"
     }
 ]
