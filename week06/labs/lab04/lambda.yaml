@@ -4,9 +4,12 @@ Metadata:
 Description: ""
 
 Parameters:
-    Subnets:
-        Type: "List<AWS::EC2::Subnet::Id>"
-        Description: "Subnets to deploy Lambda into"
+    Subnet1:
+        Type: "AWS::EC2::Subnet::Id"
+        Description: "First subnet to deploy Lambda into"
+    Subnet2:
+        Type: "AWS::EC2::Subnet::Id"
+        Description: "Second subnet to deploy Lambda into"
     SecurityGroup:
         Type: "AWS::EC2::SecurityGroup::Id"
         Description: "Security Group to deploy Lambda into"
@@ -36,7 +39,8 @@ Resources:
                 Mode: "PassThrough"
             VpcConfig: 
                 SubnetIds:
-                  - !Ref Subnets 
+                  - !Ref Subnet1
+                  - !Ref Subnet2 
                 SecurityGroupIds: 
                   - !Ref SecurityGroup
             EphemeralStorage: 
