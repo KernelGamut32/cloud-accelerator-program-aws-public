@@ -15,6 +15,30 @@ Parameters:
         Description: "Security Group to deploy Lambda into"
 
 Resources:
+    LambdaRole:
+        Type: AWS::IAM::Role
+        Properties:
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                - Sid: AllowAssumeRole
+                  Effect: Allow
+                  # Using cloud_user (from AWS sandbox in ACG)
+                  Principal:
+                    AWS:
+                        - !Join
+                            - ""
+                            - - "arn:aws:iam::"
+                              - !Ref AWS::AccountId
+                              - ":user/cloud_user"
+                    Service:
+                    - lambda.amazonaws.com
+                  Action:
+                  - sts:AssumeRole
+            ManagedPolicyArns:
+            - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+
     LambdaFunction:
         Type: "AWS::Lambda::Function"
         Properties:
@@ -32,7 +56,7 @@ Resources:
                 S3Bucket: "<bucket-name>"
                 S3Key: "lambda.zip"
             MemorySize: 128
-            Role: !Sub "arn:aws:iam::${AWS::AccountId}:role/service-role/PlantShopAPI-role-atj2dtq2"
+            Role: !Ref LambdaRole
             Runtime: "nodejs16.x"
             Timeout: 3
             TracingConfig: 
