@@ -86,8 +86,10 @@ Resources:
                 AllowOrigins: 
                   - "*"
 
-Outputs:
-    LambdaUrl:
-        Value: !Ref LambdaUrl
-        Export:
-            Name: "PlantShopAPI-LambdaUrl"
+    PermissionForLambdaURLInvoke:
+        Type: AWS::Lambda::Permission
+        Properties:
+            FunctionName: !Ref LambdaFunction
+            FunctionUrlAuthType: 'NONE'
+            Action: lambda:InvokeFunctionUrl
+            Principal: '*'    
