@@ -1,11 +1,6 @@
 [
     {
-      "ParameterKey": "Subnets",
-      "ParameterValue": ["<subnet 1>", "<subnet 2>"]
-    },
-    {
       "ParameterKey": "SecurityGroup",
       "ParameterValue": "<security group>"
     }
-  ]
-  
+]
