@@ -13,6 +13,9 @@ Parameters:
     SecurityGroup:
         Type: "AWS::EC2::SecurityGroup::Id"
         Description: "Security Group to deploy Lambda into"
+    DatabaseEndpoint:
+        Type: String
+        Description: "Database endpoint to connect to"
 
 Resources:
     LambdaRole:
@@ -47,7 +50,7 @@ Resources:
                 Variables: 
                     DB_PASS: "pl4nt5!"
                     DB_USER: "plantshop"
-                    DB_HOST: !Sub "database-1-instance-1.cqkudy00onyy.${AWS::Region}.rds.amazonaws.com"
+                    DB_HOST: !Ref DatabaseEndpoint
             FunctionName: "PlantShopAPI"
             Handler: "index.handler"
             Architectures: 
@@ -56,7 +59,7 @@ Resources:
                 S3Bucket: "<bucket-name>"
                 S3Key: "lambda.zip"
             MemorySize: 128
-            Role: !Ref LambdaRole
+            Role: !GetAtt LambdaRole.Arn
             Runtime: "nodejs16.x"
             Timeout: 3
             TracingConfig: 

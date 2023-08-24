@@ -10,5 +10,9 @@
     {
         "ParameterKey": "SecurityGroup",
         "ParameterValue": "<security group>"
+    },
+    {
+        "ParameterKey": "DatabaseEndpoint",
+        "ParameterValue": "<database endpoint>"
     }
 ]
