@@ -12,6 +12,10 @@ Alternative implementation using same lab environment:
     - Run `cd ~/` to navigate home in Cloud Shell and clone this repository using `git clone https://github.com/KernelGamut32/cloud-accelerator-program-aws-public.git`
     - Run `aws s3 mb s3://<bucket-name>` to create a new S3 bucket to house the source code (use lowercase letters and numbers only)
     - Run `aws s3 cp ./ctaws-plant-shop/api/lambda/lambda.zip s3://<bucket-name>` to copy the source code to the bucket
-    - Use `vim` to replace "<bucket-name>" in `./cloud-accelerator-program-aws-public/week06/labs/lab04/lambda.yaml` with the name of the bucket you just created
-    - Create the Lambda using the CloudFormation template in the lab repository by running `aws cloudformation create-stack --stack-name PlantAPILambda --template-body file://./cloud-accelerator-program-aws-public/week06/labs/lab04/lambda.yaml`
-    - Use the function URL output to test the function
+    - Use `vim` to add new bucket name to `./cloud-accelerator-program-aws-public/week06/labs/lab04/inputs.json`
+    - Run `aws ec2 describe-subnets --query 'Subnets[*].SubnetId'` to get the 2 subnet IDs and add those to the `./cloud-accelerator-program-aws-public/week06/labs/lab04/inputs.json` file using `vim`
+    - Run `aws ec2 describe-security-groups --query 'SecurityGroups[*].GroupId' --filter 'Name=description,Values=Plant Shop*' --output text` to get the security group id and add it to the `./cloud-accelerator-program-aws-public/week06/labs/lab04/inputs.json` file using `vim`
+    - Run `aws rds describe-db-cluster-endpoints --query 'DBClusterEndpoints[0].Endpoint'` to get the RDS cluster endpoint and add it to the `./cloud-accelerator-program-aws-public/week06/labs/lab04/inputs.json` file using `vim`
+    - Create the Lambda using the CloudFormation template in the lab repository by running `aws cloudformation create-stack --stack-name PlantAPILambda --parameters file://./cloud-accelerator-program-aws-public/week06/labs/lab04/inputs.json  --template-body file://./cloud-accelerator-program-aws-public/week06/labs/lab04/lambda.yaml --capabilities CAPABILITY_IAM`
+    - Run `aws cloudformation describe-stack-events --stack-name PlantAPILambda` to check the status of the stack creation
+    - Run `aws lambda get-function-url-config --function-name PlantShopAPI --query 'FunctionUrl'` to get the URL for the function and test via `curl` or in the browser
