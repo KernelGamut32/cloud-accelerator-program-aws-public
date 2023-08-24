@@ -2,6 +2,15 @@ AWSTemplateFormatVersion: "2010-09-09"
 Metadata:
     Generator: "former2"
 Description: ""
+
+Parameters:
+    Subnets:
+        Type: "List<AWS::EC2::Subnet::Id>"
+        Description: "Subnets to deploy Lambda into"
+    SecurityGroup:
+        Type: "AWS::EC2::SecurityGroup::Id"
+        Description: "Security Group to deploy Lambda into"
+
 Resources:
     LambdaFunction:
         Type: "AWS::Lambda::Function"
@@ -26,11 +35,10 @@ Resources:
             TracingConfig: 
                 Mode: "PassThrough"
             VpcConfig: 
-                SubnetIds: 
-                  - "subnet-036be0e581d6538ff"
-                  - "subnet-0aaa0ba0c14835a7f"
+                SubnetIds:
+                  - !Ref Subnets 
                 SecurityGroupIds: 
-                  - "sg-04dce55d9dcebcca5"
+                  - !Ref SecurityGroup
             EphemeralStorage: 
                 Size: 512
 
