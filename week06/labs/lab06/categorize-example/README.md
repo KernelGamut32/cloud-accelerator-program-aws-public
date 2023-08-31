@@ -1,14 +1,10 @@
-# Welcome to your CDK TypeScript project
+# Instructions
 
-This is a blank project for CDK development with TypeScript.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+* Run in a Cloud9 environment
+* Clone the top-level repository in Cloud9 and navigate to the lab directory (week06/labs/lab06/categorize-example) in the terminal
+* Run `npm install` to install the dependencies
+* Run `cdk bootstrap` to bootstrap the environment
+* Run `cdk synth` to synthesize the CloudFormation template and view the template
+* Run `cdk deploy` to deploy the stack
+* In the console, navigate to the S3 bucket created by the stack, create an `upload` folder, and upload an .mp3 to the folder to kick off the process
+* View the folders in the bucket to see the results
