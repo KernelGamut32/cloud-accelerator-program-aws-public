@@ -1,29 +1,5 @@
-# Lab 04 - https://learn.acloud.guru/handson/4690c366-3c29-4b6d-8014-0f837d5a54e5
+# Lab 04 - https://aws.amazon.com/blogs/devops/new-fine-grained-continuous-delivery-with-codepipeline-and-aws-stepfunctions/#:~:text=Complete%20the%20following%20steps%3A%201%20On%20the%20CodePipeline,Action%20to%20the%20action%20group.%20...%20More%20items
 
-* Under "Create an S3 Bucket Policy", steps 8 - 11 will likely not work with the instructions provided. See https://stackoverflow.com/questions/66404647/aws-s3-action-does-not-apply-to-any-resources-in-statement with an example of a working policy for this lab.
+## Create CodePipeline with CodeCommit and CodeBuild Components
 
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "*"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::static-site134233sdfsdfds2345/*"
-        },
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "*"
-            },
-            "Action": "s3:ListBucket",
-            "Resource": "arn:aws:s3:::static-site134233sdfsdfds2345"
-        }
-    ]
-}
-```
-
-* Try making a change to index.html in CodeCommit and confirm that the change is reflected in the S3 bucket
+* Execute the include `codepipeline.yaml` CloudFormation template to create a CodePipeline with CodeCommit and CodeBuild components.

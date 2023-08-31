@@ -3,12 +3,56 @@
 Follow along with steps outlined in tutorial in a Cloud9 environment created within ACG sandbox.
 
 * Don't forget package names in .java files (e.g., `package main.java;` and `package test.java;`); also, don't forget to import the `MessageUtil` class in `TestMessageUtil.java`
-* In `buildspec.yml`, use `corretto17` for the java runtime
-* Navigate to the folder where your project is stored and use `zip -r MessageUtil.zip .` to create zip file for upload to S3; it is important that the zip file be created with `zip` vs `tar`
-* Use the following to upload the .zip file to S3:
+* Use the following for initial version of `MessageUtil.java`:
 ```
-aws s3 ls
-aws s3 cp MessageUtil.zip s3://<bucket-name>/MessageUtil.zip
+package main.java;
+
+public class MessageUtil {
+  private String message;
+
+  public MessageUtil(String message) {
+    this.message = message;
+  }
+
+  public String printMessage() {
+    System.out.println(message);
+    return message;
+  }
+
+  public String salutationMessage() {
+    message = "Hi!" + message;
+    System.out.println(message);
+    return message;
+  }
+}
+```
+* Use the following for initial version of `TestMessageUtil.java`:
+```
+package test.java;
+
+import org.junit.Test;
+import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
+import main.java.MessageUtil;
+
+public class TestMessageUtil {
+
+  String message = "Robert";
+  MessageUtil messageUtil = new MessageUtil(message);
+   
+  @Test
+  public void testPrintMessage() {      
+    System.out.println("Inside testPrintMessage()");     
+    assertEquals(message,messageUtil.printMessage());
+  }
+
+  @Test
+  public void testSalutationMessage() {
+    System.out.println("Inside testSalutationMessage()");
+    message = "Hi!" + "Robert";
+    assertEquals(message,messageUtil.salutationMessage());
+  }
+}
 ```
 * Use the following for `pom.xml`:
 ```
@@ -65,3 +109,12 @@ artifacts:
     - target/messageUtil-1.0.jar
 ```
 * You can validate local build in Cloud9 by installing Maven (`sudo yum -y install maven`) and running `mvn clean package` in the project directory
+* Navigate to the folder where your project is stored and use `zip -r MessageUtil.zip .` to create zip file for upload to S3; it is important that the zip file be created with `zip` vs `tar`
+* Use the following to upload the .zip file to S3:
+```
+aws s3 ls
+aws s3 mb s3://<bucket-name>-input
+aws s3 mb s3://<bucket-name>-output
+aws s3 cp MessageUtil.zip s3://<bucket-name>-input/MessageUtil.zip
+```
+* Use https://former2 to view the CloudFormation template for the CodeBuild project
