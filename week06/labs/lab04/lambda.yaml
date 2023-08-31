@@ -44,6 +44,7 @@ Resources:
             ManagedPolicyArns:
             - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
             - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+            - "arn:aws:iam::aws:policy/service-role/AWSXRayDaemonWriteAccess"
 
     LambdaFunction:
         Type: "AWS::Lambda::Function"
@@ -66,7 +67,7 @@ Resources:
             Runtime: "nodejs16.x"
             Timeout: 10
             TracingConfig: 
-                Mode: "PassThrough"
+                Mode: "Active"
             VpcConfig: 
                 SubnetIds:
                   - !Ref Subnet1
