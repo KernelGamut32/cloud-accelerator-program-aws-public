@@ -1,0 +1,86 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Metadata:
+    Generator: "former2"
+Description: ""
+
+Parameters:
+    TopicName:
+        Type: String
+        Description: "Name of SNS topic to create and subscribe to"
+    SubscriptionEmail:
+        Type: String
+        Description: "Email for SNS topic subscription"
+    EventPattern:
+        Type: String
+        Description: "EventBridge event pattern to match"
+    EventBridgeRule:
+        Type: String
+        Description: "EventBridge rule name"
+
+Resources:
+    SNSTopic:
+      Type: "AWS::SNS::Topic"
+      Properties:
+        DisplayName: ""
+        TopicName: !Ref TopicName
+    
+    SNSTopicPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Sid: SNSPublish
+              Effect: Allow
+              Principal: "*"
+              Action: sns:Publish
+              Resource: !Ref SNSTopic
+              Condition:
+                ArnEquals:
+                  aws:SourceArn: !Ref SNSTopic
+            - Sid: SNSSubscribe
+              Effect: Allow
+              Principal: "*"
+              Action: sns:Subscribe
+              Resource: !Ref SNSTopic
+              Condition:
+                ArnEquals:
+                  aws:SourceArn: !Ref SNSTopic
+            - Sid: SNSReceive
+              Effect: Allow
+              Principal: "*"
+              Action: sns:Receive
+              Resource: !Ref SNSTopic
+              Condition:
+                ArnEquals:
+                  aws:SourceArn: !Ref SNSTopic
+                StringEquals:
+                  aws:SourceOwner: !Ref AWS::AccountId
+        Topics:
+          - !Ref SNSTopic
+
+    SNSSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Protocol: email
+        Endpoint: !Ref SubscriptionEmail
+        TopicArn: !Ref SNSTopic
+
+    EventsRule:
+        Type: "AWS::Events::Rule"
+        Properties:
+            Name: !Ref EventBridgeRule
+            EventPattern: !Ref EventPattern
+            State: "ENABLED"
+            Targets: 
+              - Arn: !Ref SNSTopic
+                Id:
+                  Fn::Join:
+                    - ""
+                    - - "Id"
+                      - Fn::Select:
+                          - 2
+                          - Fn::Split:
+                              - "/"
+                              - !Ref AWS::StackId
+            EventBusName: "default"
