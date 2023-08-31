@@ -1,3 +1,5 @@
-# Lab 05 - https://learn.acloud.guru/handson/b5512e9f-29eb-46da-a9c2-66d1ffc0fe78
+# Lab 05
 
-Follow along with the Guide tab in the ACG lab
+* Review lab04 in week06 to see how the tracing config and XRay works with the function
+* Once the previous labs instructions are complete, navigate to the XRay console and review the traces
+* Alternatively, you can navigate to the the PlantShopAPI function in the Lambda console and click the Monitoring tab to see the XRay traces
