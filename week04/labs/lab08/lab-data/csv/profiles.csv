@@ -1,5 +1,0 @@
-type,uid,picture,full_name,location,collections,friends
-profile,john,https://dynamodblabs.s3.amazonaws.com/collectors/images/john/john.png,John Hanna,Washington USA,comics / movies,adam / corey / craig
-profile,adam,https://dynamodblabs.s3.amazonaws.com/collectors/images/adam/adam.png,Adam Vincent,Connecticut USA,movies / boardgames,john / corey / craig
-profile,craig,https://dynamodblabs.s3.amazonaws.com/collectors/images/craig/craig.png,Craig Parker,Maine USA,instruments,john / adam / corey
-profile,corey,https://dynamodblabs.s3.amazonaws.com/collectors/images/corey/corey.png,Corey Knapp,North Carolina USA,books,john / adam / craig
