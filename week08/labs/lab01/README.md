@@ -31,7 +31,7 @@
 * Re-run `mvn clean package` and then `sh target/manage.sh create` to recreate the Lambda with the changes
 * Use `sh target/manage.sh invoke` to test the Lambda function updates
 * Review the XRay tracing for the Lambda in the AWS console - it will not be recording traces
-* Add the `AWSXRayDaemonWriteAccess` permissions to the previously created roles
+* Add the `AWSXRayDaemonWriteAccess` and `AWSLambdaBasicExecutionRole` permissions to the previously created role
 * Use `sh target/manage.sh invoke` to test
 * Review the XRay tracing for the Lambda again
 * **NOTE: When updating, don't forget to build before running update statement**
