@@ -8,8 +8,6 @@
 * Run `cdk bootstrap` to bootstrap the CDK environment
 * Run `cdk synth` to view the template that will be generated for the CDK stack
 * Run `cdk deploy` to deploy the CDK stack
-
-**Follow along with the Guide tab in the lab**
-
+* Follow the provided instructions for connecting to the EC2 and pushing messages onto the queue (however, use `MessagesCDK` for the queue name)
 * It may take a few minutes for the messsages to show in the received messages section of the SQS queue
 * Number of messages received should match the number of items in the DynamoDB table
