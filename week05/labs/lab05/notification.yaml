@@ -76,7 +76,7 @@ Resources:
                 RuleDisabled: false
                 Sql: !Ref AlarmTopicRuleSQL
                 Actions: 
-                    - SNS: 
+                    - Sns: 
                         TargetArn: !Ref SNSTopic
                         RoleArn: !GetAtt AlarmTopicRuleRole.Arn
                         MessageFormat: "RAW"
