@@ -50,7 +50,7 @@ export class CreateSnsTopic extends Construct {
         });
 
         new sns.CfnSubscription(this, 'SNSSubscription', {
-            topicArn: this.topic.ref,
+            topicArn: this.topic.attrTopicArn,
             endpoint: emailAddress,
             protocol: "email",
             region: Stack.of(this).region
