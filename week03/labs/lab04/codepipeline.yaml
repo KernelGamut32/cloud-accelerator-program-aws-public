@@ -3,11 +3,16 @@ Metadata:
   Generator: "former2"
 Description: ""
 
+Parameters:
+    BuildSpecBucketName:
+        Type: String
+        Description: "Bucket used for storage of initial source code"
+
 Resources:
     S3Bucket:
         Type: "AWS::S3::Bucket"
         Properties:
-            BucketName: !Sub "codepipeline-lab-${AWS::Region}-capdelta"
+            BucketName: !Sub "codepipeline-lab-${AWS::Region}-${AWS::AccountId}-capdelta"
             BucketEncryption:
                 ServerSideEncryptionConfiguration:
                     - ServerSideEncryptionByDefault:
@@ -54,6 +59,10 @@ Resources:
         Type: "AWS::CodeCommit::Repository"
         Properties:
             RepositoryName: "cicd-stepfunctions"
+            Code:
+              S3:
+                Bucket: !Ref BuildSpecBucketName
+                Key: source.zip
 
     CodeBuildProject:
         Type: "AWS::CodeBuild::Project"

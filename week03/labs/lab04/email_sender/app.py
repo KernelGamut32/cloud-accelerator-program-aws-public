@@ -18,7 +18,7 @@ def lambda_handler(event, context):
     formatted_email = email_contents.format(url_base=callback_base, token=token)
     ses_client = boto3.client('ses')
     ses_client.send_email(
-        Source='no-reply@example.com',
+        Source=event["sender"],
         Destination={
             'ToAddresses': [event["team_alias"]]
         },

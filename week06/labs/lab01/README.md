@@ -18,7 +18,7 @@
 * Use `aws cloudformation describe-stack-events --stack-name s3buckets` to view the status of the stack update
 * Run `mv ./S3BucketsLabFiles/cat1.jpg ./S3BucketsLabFiles/cat1.jpg.backup` to backup the original file
 * Run `mv ./S3BucketsLabFiles/cat2.jpg ./S3BucketsLabFiles//cat1.jpg` to replace the original file with the new file
-* Run `ls ./S3BucketLabFiles` to verify that the file changes are complete
+* Run `ls ./S3BucketsLabFiles` to verify that the file changes are complete
 * Run `aws s3 cp ./S3BucketsLabFiles/cat1.jpg s3://<public-bucket-name>` to add a new version of the file to the S3 bucket
 * Run `aws s3api put-object-acl --bucket <public-bucket-name> --key cat1.jpg --acl public-read` to make the new version accessible
 * Attempt to access the uploaded file at `https://<public-bucket-name>.s3.amazonaws.com/cat1.jpg` again and note the updated version of the object

@@ -2,8 +2,8 @@
 
 * You'll need to execute this lab in the provided lab sandbox because you'll use the provided EC2 instance for the alarms
 * Open Cloud Shell, make sure you are in the home directory by executing `cd ~/`, and clone the top-level repository using `git clone https://github.com/KernelGamut32/cloud-accelerator-program-aws-public.git`
-* Navigate to the lab directory in Cloud Shell using `cd cloud-accelerator-program-aws-public/week05/labs/lab04/sns-example`
 * Use `vim cloud-accelerator-program-aws-public/week05/labs/lab04/sns-example/cdk.json` to view and modify the parameter values (near the bottom of the file) - **update the email address and the instance ID**
+* Navigate to the lab directory in Cloud Shell using `cd cloud-accelerator-program-aws-public/week05/labs/lab04/sns-example`
 * Run `npm install` to install the dependencies
 * Run `cdk bootstrap` to bootstrap the environment
 * Run `cdk synth` to synthesize the CloudFormation template and view the template

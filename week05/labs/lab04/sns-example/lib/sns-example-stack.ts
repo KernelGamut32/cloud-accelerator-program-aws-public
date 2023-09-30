@@ -14,8 +14,6 @@ export class SnsExampleStack extends cdk.Stack {
     const topic = new create_sns_topic.CreateSnsTopic(this, 'SNSTopic', alarmName,
       emailAddress);
 
-    const topicArn = "arn:aws:sns:us-east-1:${Stack.of(this).account}:${topic.topic.topicName}"
-
     const alarm = 
       new create_ec2_cloudwatch_alarm.CreateEC2CloudWatchAlarm(this, 'EC2CloudWatchAlarm', 
         alarmName, topic.topic.attrTopicArn, topic.topic.attrTopicArn, topic.topic.attrTopicArn, instanceId);
