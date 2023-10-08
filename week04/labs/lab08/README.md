@@ -1,9 +1,9 @@
 # Lab 08 - https://learn.acloud.guru/handson/ab9e8bda-1f6f-4af8-9465-f8e3e14cc7d1
 
-Follow along with the "Guide" tab in the ACG lab definition.
+Follow along with the "Guide" tab in the ACG lab definition or use the provided CDK project to deploy and execute.
 
 * Run in a Cloud9 environment in an ACG sandbox
-* Clone the repo to your Cloud9 environment using `git clone https://github.com/KernelGamut32/cloud-accelerator-program-aws-public.git`
+* Clone the repo to your Cloud9 environment in `~/environment` using `git clone https://github.com/KernelGamut32/cloud-accelerator-program-aws-public.git`
 * Navigate to target folder using `cd cloud-accelerator-program-aws-public/week04/labs/lab08/dynamodb-load`
 * Run `npm install` to install the required dependencies
 * Run `cdk bootstrap` to bootstrap the CDK environment
