@@ -1,10 +1,11 @@
 # Lab 02 - https://dzone.com/articles/dynamic-data-processing-using-serverless-java-with and https://dzone.com/articles/dynamic-data-processing-using-serverless-java-with-1 
 
-** NOTE: If you encounter "no space left on device issues", use https://ryansouthgate.com/aws-cloud9-no-space-left-on-device/#:~:text=There%E2%80%99s%20a%20few%20things%20we%20can%20tackle%20here%2C,clean%20up%20that%20much%20free%20space%20for%20me**
+**NOTE: If you encounter "no space left on device issues", use https://ryansouthgate.com/aws-cloud9-no-space-left-on-device/#:~:text=There%E2%80%99s%20a%20few%20things%20we%20can%20tackle%20here%2C,clean%20up%20that%20much%20free%20space%20for%20me**
 
-* Launch an AWS Sandbox and create a new Cloud9 environment (or reuse from previous lab)
+* Launch an AWS Sandbox and create a new Cloud9 environment (or reuse from previous lab; if reusing, execute `cd ~/environment` before proceeding). **NOTE: If not reusing, you'll have to setup `quarkus` and `Maven` again using instructions from previous lab.**
 * Follow along with the initial instructions in the first tutorial link
-* The tutorial recommends using Java 17 - however, Cloud9 does not currently support 17 OOTB (you can use 11 instead)
+* The tutorial recommends using Java 17 - however, Cloud9 does not currently support 17 OOTB (you can use 11 instead - i.e., `quarkus create piggybank --java=11`)
+* Use the folder structure in `https://github.com/danieloh30/quarkus-piggybank/tree/main/src/main/java/org/acme` to help guide organization of your code and content
 * For the docker compose steps, use the following to help you get docker-compose setup in Cloud9:
     * Run `sudo curl -SL https://github.com/docker/compose/releases/download/v2.20.2/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose` to install docker-compose in Cloud9
     * Add execution permissions (using `+x`) to the docker-compose binary: `sudo chmod +x /usr/local/bin/docker-compose`
@@ -32,7 +33,7 @@ services:
 --key-schema AttributeName=timestamp,KeyType=HASH AttributeName=accountID,KeyType=RANGE \
 --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --table-class STANDARD
 ```
-* Use the following for adding test records to the "local" table
+* Use the following for adding test records to the "local" table (don't forget the steps for adding the additional dependency and updating `application.properties`; **NOTE: Watch formatting in your `pom.xml` file**)
 ```
 curl -X POST http://localhost:8080/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Food", "description": "Shrimp", "category": "Seafood", "amount": "-20", "balance": "0", "date": "2023-02-01+12:00"}'
 curl -X POST http://localhost:8080/entryResource -H 'Content-Type: application/json' -d '{"accountID": "Car", "description": "Flat tires", "category": "Automotive", "amount": "-200", "balance": "0", "date": "2023-03-01+12:00"}'
@@ -47,6 +48,7 @@ curl -X GET http://localhost:8080/entryResource/findAll
 ```
 curl -X GET http://localhost:8080/entryResource/findByAccount/Food
 ```
+* Shift over to the second URL (for part 2 of the lab)
 * When adding the new extension for Lambda, make sure that you are in the project root
 * Use this for the SAM template:
 ```
@@ -96,3 +98,5 @@ curl -X POST ${API_URL}/entryResource -H 'Content-Type: application/json' -d '{"
 curl -X GET ${API_URL}/entryResource/findAll
 curl -X GET ${API_URL}/entryResource/findByAccount/Food
 ```
+* To verify, review the DynamoDB table in the AWS Console to see the newly created items
+* You can also view the configuration for the Lambda to see the SnapStart settings applied
